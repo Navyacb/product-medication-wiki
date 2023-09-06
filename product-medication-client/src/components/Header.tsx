@@ -2,7 +2,7 @@ import {AppBar, Toolbar , Typography} from '@mui/material';
 import logo from '../images/Logo.png'
 import styles from './Header.module.css';
 
-export const Header = (props : any)=>{
+export const Header = ()=>{
 
     return (
         <AppBar position="sticky" sx={{ backgroundColor: '#e4d6d6' }}>

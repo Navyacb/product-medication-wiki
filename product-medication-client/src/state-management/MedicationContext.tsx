@@ -1,17 +1,18 @@
 import { createContext, Dispatch } from "react";
 
-interface medicationDrug {
+interface IMedicationDrug {
     name: string,
     diseases: string[],
-    releases : Date
+    releases : Date,
+    description : String,
   }
 
-interface MedicationContextType {
-    medicationDrugs: medicationDrug[];
+interface IMedicationContextType {
+    medicationDrugs: IMedicationDrug[];
     // medicationDrugsDispatch: Dispatch<'ADD_MEDICATION'>; 
 }
 
-export const MedicationContext = createContext<MedicationContextType>({
+export const MedicationContext = createContext<IMedicationContextType>({
     medicationDrugs: [],
     // medicationDrugsDispatch: () => {}, 
 })

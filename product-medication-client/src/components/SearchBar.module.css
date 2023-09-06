@@ -5,3 +5,10 @@
 .width100{
     width: 100%;
 }
+
+.warning{
+    color: orange;
+}
+.searchPadding{
+    margin: 1rem 0;
+}
