@@ -1,14 +1,16 @@
-.padding{
-    padding: .5rem;
-}
-
 .width100{
     width: 100%;
 }
-
 .warning{
     color: orange;
 }
 .searchPadding{
-    margin: 1rem 0;
+    padding: .5rem 0;
+}
+
+/* media query for mobile devices */
+@media (max-width: 600px) {
+    .mobilePadding {
+        padding: 0px 10px; 
+    }
 }

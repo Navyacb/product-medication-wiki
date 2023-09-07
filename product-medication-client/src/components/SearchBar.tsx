@@ -39,9 +39,9 @@ export const SearchBar = ()=>{
     },[searchText])
 
     return (
-        <div>
+        <div className={styles.mobilePadding}>
             <Typography variant='h4' className={styles.searchPadding} >Search Medication</Typography>
-            <Paper elevation={3} className={styles.padding}>
+            <Paper elevation={3}>
                 <InputBase className={styles.width100}
                     placeholder="You can search by drug name or disease..."
                     inputProps={{ 'aria-label': 'You can search by drug name or disease...' }}

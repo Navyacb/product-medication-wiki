@@ -6,6 +6,12 @@ export const SearchList = (props:any)=>{
     const {searchData} = props
     const classes = useStylesUtility();
 
+    const formatDate = (dateString: string) => {
+        const options: Intl.DateTimeFormatOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    }
+   
+
     return (
         <div>
             {
@@ -17,12 +23,17 @@ export const SearchList = (props:any)=>{
                         {
                             searchData.map((data:any)=>{
                                 return (
-                                    <Grid item xs={12} key={data._id}>
-                                    <Card sx={{ background: 'aliceblue'}}>
+                                    <Grid item xs={12}>
+                                    <Card sx={{ background: 'aliceblue'}} key={data._id}>
                                         <CardContent>
-                                        <Typography gutterBottom variant="h5" component="div">
-                                            {data.name}
-                                        </Typography>
+                                        <div className={styles.wrapText}>
+                                            <Typography gutterBottom variant="h5" component="div">
+                                                {data.name}
+                                            </Typography>
+                                            <Typography variant="body1">
+                                                {formatDate(data.released)}
+                                            </Typography>
+                                        </div>
                                         <ul className={styles.ulColor}>
                                             {
                                                 data.diseases.map((disease:any)=>{
