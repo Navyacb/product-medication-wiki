@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import {Container} from '@mui/material';
 import { RouterLinks } from './RouterLInks';
 import { Header } from './components/Header';
@@ -32,6 +32,18 @@ const App = ()=>{
   }
 
   const [isLoggedIn,loggedInDispatch] = useReducer(loggedInReducer,false)
+
+  useEffect(()=>{
+    const token = localStorage.getItem('token');
+
+  if (token) {
+    const token = localStorage.getItem('token');
+    //to make user logged in even after page refresh
+      if (token) {
+        loggedInDispatch({ type: 'SetIsLogin', payload: true });
+      }
+  }
+  })
 
   return (
     <IsLoggedIN.Provider value={{isLoggedIn,loggedInDispatch }}>
