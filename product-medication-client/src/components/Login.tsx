@@ -13,6 +13,8 @@ export const Login = ()=>{
     const [showPassword, setShowPassword] = useState(false);
     const handleClickShowPassword = () => setShowPassword((show) => !show);
     const {loggedInDispatch,isLoggedIn} = useContext(IsLoggedIN)
+    const [passwordError, setPasswordError] = useState('');
+    const [emailError, setEmailError] = useState('');
     const navigate = useNavigate()
 
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -22,13 +24,18 @@ export const Login = ()=>{
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>)=>{
         if(e.target.id === 'email'){
             setEmail(e.target.value)
+            setEmailError('')
         }
         if(e.target.id === 'password'){
             setPassword(e.target.value)
+            setPasswordError('')
         }
     }
 
     const handleLogin = async()=>{
+        if (password.length < 8) {
+            setPasswordError('Password must be at least 8 characters long.');
+        } else {
          try{
             const response = await axios.post('http://localhost:3030/login',{
                 email,
@@ -45,6 +52,7 @@ export const Login = ()=>{
          catch(error){
             console.log('error while trying user to get loggedIn', error)
          }
+        }
     }
 
     return (
@@ -57,7 +65,7 @@ export const Login = ()=>{
             noValidate
             autoComplete="off"
         >
-            <FormControl sx={{ m: 1,margin:'15px', display : 'flex' }} variant="outlined" className={styles.inputField}>
+            <FormControl sx={{ m: 1,margin:'15px', display : 'flex' }} required variant="outlined" className={styles.inputField}>
                 <InputLabel htmlFor="outlined-adornment-password">Email</InputLabel>
                     <OutlinedInput
                         value={email}
@@ -68,7 +76,7 @@ export const Login = ()=>{
                         maxRows={4}
                     />
             </FormControl>
-            <FormControl sx={{ m: 1, margin:'15px',display : 'flex' }} variant="outlined" className={styles.inputField}>
+            <FormControl sx={{ m: 1, margin:'15px',display : 'flex' }} required variant="outlined" className={styles.inputField}>
             <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
             <OutlinedInput
                 value={password}
@@ -89,6 +97,7 @@ export const Login = ()=>{
                 }
                 label="Password"
             />
+            {passwordError && <div className={styles.error}>{passwordError}</div>}
             </FormControl>
             <div className={styles.buttonIcon}>
                 <Button color="tertiary" variant="outlined" onClick={handleLogin}>Sign In</Button>

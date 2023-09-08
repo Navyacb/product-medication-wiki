@@ -12,8 +12,6 @@ export const Header = ()=>{
     const {isLoggedIn,loggedInDispatch} = useContext(IsLoggedIN)
     const navigate = useNavigate()
 
-    console.log(isLoggedIn)
-
     const handleLogOut = ()=>{
         loggedInDispatch({type:'SetIsLogin',payload:!isLoggedIn})
         navigate("/")
