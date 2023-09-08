@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import {Container} from '@mui/material';
 import { RouterLinks } from './RouterLInks';
 import { Header } from './components/Header';
 import { MedicationContext } from './state-management/MedicationContext';
 import axios from "axios"
 import { useQuery} from 'react-query'
-import styles from './App.module.css'
+import { IsLoggedIN } from './state-management/IsLoggedIN';
 
 const App = ()=>{
 
@@ -25,15 +25,20 @@ const App = ()=>{
     queryKey : ["MedicationData"]
   })
 
+  const loggedInReducer = (state:any,action:any)=>{
+      if(action.type = 'SetIsLogin'){
+        return action.payload
+      }
+  }
+
+  const [isLoggedIn,loggedInDispatch] = useReducer(loggedInReducer,false)
+
   return (
+    <IsLoggedIN.Provider value={{isLoggedIn,loggedInDispatch }}>
       <MedicationContext.Provider value={{medicationDrugs}}>
-          <Container maxWidth="sm" sx={{padding:'0px'}}>
-              <div className="center">
-                <Header />
                 <RouterLinks/>
-              </div>
-          </Container>
       </MedicationContext.Provider>
+    </IsLoggedIN.Provider>
   );
 }
 

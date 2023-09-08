@@ -7,6 +7,11 @@
 .searchPadding{
     padding: .5rem 0;
 }
+.heading{
+    display: flex;
+    justify-content: space-between;
+    margin:10px 0px;
+}
 
 /* media query for mobile devices */
 @media (max-width: 600px) {

@@ -1,0 +1,11 @@
+.container, .buttonIcon{
+    justify-content: center;
+    display: flex;
+}
+.container{
+    margin-top: 6rem;
+}
+.inputField{ 
+    width: 25ch ;
+    display : flex ;
+}

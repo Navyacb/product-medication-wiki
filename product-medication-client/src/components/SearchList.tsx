@@ -1,5 +1,5 @@
 import {Typography,Card,CardContent,Grid } from '@mui/material';
-import styles from './SearchList.module.css'
+import styles from './SearchList.module.css';
 import { useStylesUtility } from '../helper/useStylesUtility';
 
 export const SearchList = (props:any)=>{

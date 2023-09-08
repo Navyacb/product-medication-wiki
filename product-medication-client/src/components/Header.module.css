@@ -1,3 +1,10 @@
 .imageHeight{
     height: 40px;
 }
+.headerFlex{
+    display: flex;
+    justify-content: space-between;
+}
+.decoration{
+    text-decoration: none;
+}

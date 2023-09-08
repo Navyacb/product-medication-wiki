@@ -1,9 +1,11 @@
 import {Paper, InputBase, IconButton,Typography,} from '@mui/material';
-import {Search, Clear , Warning} from '@mui/icons-material';
+import {Search, Clear} from '@mui/icons-material';
 import React, { useContext, useEffect, useState } from 'react';
 import styles from './SearchBar.module.css'
 import { SearchList } from './SearchList';
+import Button from '@mui/material-next/Button';
 import { MedicationContext } from '../state-management/MedicationContext';
+import { IsLoggedIN } from '../state-management/IsLoggedIN';
 
 interface IMedicationDrug {
     name: string,
@@ -16,6 +18,7 @@ export const SearchBar = ()=>{
     const [searchText,setSearchText] = useState('')
     const [searchData,setSearchData] = useState<IMedicationDrug[]>([])
     const [textMessage,setTextMessage] = useState('')
+    const {isLoggedIn} = useContext(IsLoggedIN)
 
     const handleSearch = (e:React.ChangeEvent<HTMLInputElement>)=>{
         setSearchText(e.target.value)
@@ -40,7 +43,10 @@ export const SearchBar = ()=>{
 
     return (
         <div className={styles.mobilePadding}>
-            <Typography variant='h4' className={styles.searchPadding} >Search Medication</Typography>
+            <div className={styles.heading}>
+                <Typography variant='h5' className={styles.searchPadding} >Search Medication</Typography>
+                {(isLoggedIn) && <Button color="tertiary"  size="large"  variant="text">Add Medication</Button>}
+            </div>
             <Paper elevation={3}>
                 <InputBase className={styles.width100}
                     placeholder="You can search by drug name or disease..."
